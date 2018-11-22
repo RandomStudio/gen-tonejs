@@ -3,7 +3,7 @@ $body-color: grey;
 body {
   color: $body-color;
   font-family: 'Vectrex', Arial, sans-serif;
-
+  padding: 16px;
 }
 
 button {
@@ -11,4 +11,6 @@ button {
   color: white;
   background-color: grey;
   border: 1px solid black;
+  // margin: 0 4px;
+  margin-right: 4px;
 }

@@ -5,8 +5,19 @@ import * as Tone from 'tone';
 //create a synth and connect it to the master output (your speakers)
 const synth = new Tone.Synth().toMaster();
 
-const playNote = () => {
-    synth.triggerAttackRelease("C4", "4n");
+const triggerAttackRelease = (note, length) => {
+    console.log('event1');
+    synth.triggerAttackRelease(note, length);
+};
+
+const triggerAttack = (note) => {
+    console.log('event2');
+    synth.triggerAttack(note);
+};
+
+const triggerRelease = () => {
+    console.log('event3');
+    synth.triggerRelease();
 };
 
 const createButton = (name, label, clickHandler, parent = document.body) => {
@@ -19,4 +30,6 @@ const createButton = (name, label, clickHandler, parent = document.body) => {
     return button;
 };
 
-createButton('play', 'play note', playNote);
+createButton('play', 'trigger attackRelease', () => triggerAttackRelease("C4", "4n"));
+createButton('play', 'trigger attack', () => triggerAttack("C4"));
+createButton('stop', 'trigger release', () => triggerRelease());
