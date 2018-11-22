@@ -1,5 +1,14 @@
-$body-color: blue;
+$body-color: grey;
 
 body {
   color: $body-color;
+  font-family: 'Vectrex', Arial, sans-serif;
+
+}
+
+button {
+  font-family: 'Vectrex';
+  color: white;
+  background-color: grey;
+  border: 1px solid black;
 }
