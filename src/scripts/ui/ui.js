@@ -1,5 +1,6 @@
 import noUiSlider from 'nouislider';
 import 'nouislider/distribute/nouislider.css';
+import './ui.css';
 
 export const createButton = (name, label, clickHandler, parent = document.body) => {
     const button = document.createElement('button');
