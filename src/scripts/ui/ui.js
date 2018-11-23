@@ -12,7 +12,7 @@ export const createButton = (name, label, clickHandler, parent = document.body) 
     return button;
 };
 
-export const createSlider = (min, max, name, onchange, initValue = 0, units = '', parent = document.body) => {
+export const createSlider = (min, max, name, onchange, initValue = 0, units = '', labelValues = [], parent = document.body) => {
     // <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
 
     const slider = document.createElement('div');
@@ -32,11 +32,18 @@ export const createSlider = (min, max, name, onchange, initValue = 0, units = ''
     noUiSlider.create(slider, {
         start: initValue,
         range: { min, max },
-        pips: {
-            mode: 'values',
-            values: [20, 440, 1000, 2000, 10000],
-            density: 2
-        }
+        pips: labelValues.length > 0 
+        ?
+            {
+                mode: 'values',
+                density: 2,
+                values: labelValues
+            }
+        :
+            {
+                mode: 'range',
+                density: 2
+            }
     });
     
     slider.noUiSlider.on('update', values => { 
