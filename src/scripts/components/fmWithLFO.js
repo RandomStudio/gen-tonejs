@@ -5,13 +5,34 @@ export const fmWithLFO = (Tone) => {
     
     const parentElement = Component('fmWithLfo');
 
-    const synth = new Tone.Synth().toMaster();
+    const synth = new Tone.FMSynth({
+        modulationIndex: 30,
+        harmonicity: 1,
+        envelope : {
+            attack : 0.01,
+            decay : 0.2
+        },
+        modulation : {
+            type : "square"
+        },
+        modulationEnvelope : {
+            attack : 0.5,
+            decay : 0.01
+        }
+    }).toMaster();
 
-    const triggerAttackRelease = (note, length) => {
-        synth.triggerAttackRelease(note, length);
-    };
+    const volumeLFO = new Tone.LFO({
+        "type" : "sine",
+        "min" : 0,
+        "max" : -100,
+        "frequency": 1
+    });
 
+    volumeLFO.connect(synth.volume);
+    volumeLFO.start();
+    
     const triggerAttack = (note) => {
+        console.log('trigger attack');
         if (note) {
             synth.triggerAttack(note);
         } else {
@@ -27,7 +48,6 @@ export const fmWithLFO = (Tone) => {
         synth.frequency.rampTo(freq, 0.1);
     };
     
-    createButton('play', 'play note', () => triggerAttackRelease("C4", "4n"), parentElement);
     createButton('play', 'trigger attack', () => triggerAttack(), parentElement);
     createButton('stop', 'trigger release', () => triggerRelease(), parentElement);
     
