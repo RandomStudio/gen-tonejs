@@ -61,10 +61,24 @@ export const fmWithLFO = (Tone) => {
     createButton('play', 'trigger attack', () => triggerAttack(), parentElement);
     createButton('stop', 'trigger release', () => triggerRelease(), parentElement);
     
-    createSlider(0, 10000, 'fmsynth-freq', updateFreq, synth.frequency.value, 'Hz', freqRangeValues, parentElement);
-    createSlider(0, 100, 'lfo-volume-freq', updateVolumeLFOfrequency, volumeLFO.frequency.value, 'Hz', [], parentElement);
-    createSlider(0, 1000, 'fmsynth-mod-freq', updateModulatorFrequency, synth.modulation.frequency.value, 'Hz', freqRangeValues, parentElement);
+    createSlider('fmsynth-freq', { 
+        min: 0, max: 10000,
+        initValue: synth.frequency.value, 
+        units: 'Hz', 
+        labelValues: freqRangeValues
+    }, updateFreq, parentElement);
 
-    
+    createSlider('lfo-volume-freq', {
+        min: 0, max: 100, 
+        initValue: volumeLFO.frequency.value, 
+        units: 'Hz'
+    }, updateVolumeLFOfrequency, parentElement);
+
+    createSlider('fmsynth-mod-freq', {
+        min: 0, max: 1000, 
+        initValue: synth.modulation.frequency.value, 
+        units: 'Hz', 
+        labelValues: freqRangeValues
+    }, updateModulatorFrequency, parentElement);
 
 };

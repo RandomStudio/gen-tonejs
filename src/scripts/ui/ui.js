@@ -11,9 +11,7 @@ export const createButton = (name, label, clickHandler, parent = document.body) 
     return button;
 };
 
-export const createSlider = (min, max, name, onchange, initValue = 0, units = '', labelValues = [], parent = document.body) => {
-    // <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-
+const sliderElements = (name, parentElement) => {
     const slider = document.createElement('div');
     slider.classList.add('slider');
     const label = document.createElement('div');
@@ -26,7 +24,40 @@ export const createSlider = (min, max, name, onchange, initValue = 0, units = ''
     showValue.classList.add('value');
     label.appendChild(showValue);
 
-    parent.appendChild(slider);
+    parentElement.appendChild(slider);  
+    
+    return slider;
+};
+
+export const createRangeSlider = (name, options, parent = document.body) => {
+    const { min, max, onchange, initValues = [0,1], units = '', labelValues = [] } = options;
+    const slider = sliderElements(name, parent);
+
+    noUiSlider.create(slider, {
+        start: initValues,
+        connect: true,
+        range: {
+            min, max
+        },
+        pips: labelValues.length > 0 
+        ?
+            {
+                mode: 'values',
+                density: 2,
+                values: labelValues
+            }
+        :
+            {
+                mode: 'range',
+                density: 2
+            }
+    });
+
+};
+
+export const createSlider = (name, options, onchange, parent = document.body) => {
+    const { min, max, initValue = 0, units = '', labelValues = [] } = options;
+    const slider = sliderElements(name, parent);
 
     noUiSlider.create(slider, {
         start: initValue,
@@ -45,8 +76,8 @@ export const createSlider = (min, max, name, onchange, initValue = 0, units = ''
             }
     });
     
-    slider.noUiSlider.on('update', values => { 
-        const number = parseFloat(values);
+    slider.noUiSlider.on('update', value => { 
+        const number = parseFloat(value);
         onchange(number);
         const showValue = document.getElementById(name + '-value');
         showValue.innerHTML = `${number} ${units}`;

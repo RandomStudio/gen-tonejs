@@ -32,5 +32,10 @@ export const Simple = (Tone) => {
     createButton('play', 'trigger attack', () => triggerAttack(), parentElement);
     createButton('stop', 'trigger release', () => triggerRelease(), parentElement);
     
-    createSlider(0, 10000, 'synth-freq', updateFreq, synth.frequency.value, 'Hz', freqRangeValues, parentElement);
+    createSlider('simple-synth-freq', {
+        min: 0, max: 10000,
+        initValue: synth.frequency.value, 
+        units: 'Hz', 
+        labelValues: freqRangeValues
+     }, updateFreq, parentElement);
 };

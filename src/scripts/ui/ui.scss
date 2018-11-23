@@ -7,7 +7,7 @@ button {
   }
   
   .slider {
-    margin: 64px 64px 100px 0;
+    margin: 64px 64px 100px 16px;
     font-size: 10px;
     .label {
       font-size: 12px;
@@ -20,8 +20,11 @@ button {
         color: black;
       }
     }
+    .noUi-value {
+      font-size: 6px;
+    }
     .noUi-value-horizontal {
-      margin-top: 8px;
+      margin-top: 12px;
     }
   }
 

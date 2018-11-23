@@ -62,6 +62,10 @@ export const DetuneSirens = (Tone) => {
     createButton('play', 'unmute', () => start(), parentElement);
     createButton('stop', 'mute', () => stop(), parentElement);
     
-    createSlider(0, 1, 'voltage-freq', updateFreq, frequency.value, 'Hz', parentElement);
+    createSlider('voltage-freq', {
+        min: 0, max: 1, 
+        initValue: frequency.value, 
+        units: 'Hz'
+    }, updateFreq, parentElement);
 
 };
