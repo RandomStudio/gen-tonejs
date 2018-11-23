@@ -12,7 +12,7 @@ export const createButton = (name, label, clickHandler, parent = document.body) 
     return button;
 };
 
-export const createSlider = (min, max, name, onchange, initValue = 0, units = '') => {
+export const createSlider = (min, max, name, onchange, initValue = 0, units = '', parent = document.body) => {
     // <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
 
     const slider = document.createElement('div');
@@ -27,7 +27,7 @@ export const createSlider = (min, max, name, onchange, initValue = 0, units = ''
     showValue.classList.add('value');
     label.appendChild(showValue);
 
-    document.body.appendChild(slider);
+    parent.appendChild(slider);
 
     noUiSlider.create(slider, {
         start: initValue,
