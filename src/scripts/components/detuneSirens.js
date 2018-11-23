@@ -56,7 +56,7 @@ export const DetuneSirens = (Tone) => {
     };
 
     const updateFreq = (value) => {
-        frequency.rampTo(value, 0.1);
+        frequency.rampTo(value, 0.01);
     };
 
     createButton('play', 'unmute', () => start(), parentElement);
