@@ -13,7 +13,8 @@ export const NoiseSynth = (Tone) => {
         envelope: {
             attack: 0.005,
             decay: 0.01,
-            sustain: 0.1
+            sustain: 0.2,
+            release: 2
         }
     });
 
@@ -38,14 +39,21 @@ export const NoiseSynth = (Tone) => {
         synth.triggerRelease();
     };
 
-    createButton('play', 'play note', () => triggerAttackRelease("8n"), parentElement);
+    const cutoffFrequencies = ([min, max]) => {
+        highpass.frequency.value = min;
+        lowpass.frequency.value = max;
+    };
+
+    createButton('play', 'play note', () => triggerAttackRelease("4n"), parentElement);
     createButton('play', 'trigger attack', () => triggerAttack(), parentElement);
     createButton('stop', 'trigger release', () => triggerRelease(), parentElement);
     
-    createRangeSlider('noise-synth-filters', {
+    createRangeSlider('noise-synth-cutoff', {
         min: 0,
         max: 20000,
         initValues: [100, 2000],
+        units: 'Hz',
+        labelRange: ['highpass', 'lowpass'],
         labelValues: freqRangeValues
-    }, parentElement);
+    }, cutoffFrequencies, parentElement);
 };

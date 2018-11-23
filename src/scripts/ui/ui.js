@@ -29,8 +29,8 @@ const sliderElements = (name, parentElement) => {
     return slider;
 };
 
-export const createRangeSlider = (name, options, parent = document.body) => {
-    const { min, max, onchange, initValues = [0,1], units = '', labelValues = [] } = options;
+export const createRangeSlider = (name, options, onchange, parent = document.body) => {
+    const { min, max, initValues = [0,1], units = '', labelValues = [], labelRange = []  } = options;
     const slider = sliderElements(name, parent);
 
     noUiSlider.create(slider, {
@@ -51,6 +51,21 @@ export const createRangeSlider = (name, options, parent = document.body) => {
                 mode: 'range',
                 density: 2
             }
+    });
+
+    slider.noUiSlider.on('update', values => { 
+        const numbers = values.map(v => parseFloat(v));
+        onchange(numbers);
+        const showValue = document.getElementById(name + '-value');
+        if (labelRange.length === numbers.length) {
+            showValue.innerHTML = numbers.map((n, i) => 
+                ` ${labelRange[i]} ${n} ${units}`
+            );
+        } else {
+            showValue.innerHTML = numbers.map((n, i) => 
+                ` ${n} ${units}`
+            );
+        }
     });
 
 };
