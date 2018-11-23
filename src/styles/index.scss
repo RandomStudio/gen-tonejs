@@ -22,6 +22,12 @@ button {
     font-size: 12px;
     position: absolute;
     top: -32px;
+    width: 100%;
+    .value {
+      position: absolute;
+      right: 0;
+      color: black;
+    }
   }
   .noUi-value-horizontal {
     margin-top: 8px;
