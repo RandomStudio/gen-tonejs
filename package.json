@@ -47,6 +47,7 @@
   },
   "dependencies": {
     "@babel/polyfill": "^7.0.0",
+    "nouislider": "^12.1.0",
     "tone": "^0.12.80"
   }
 }

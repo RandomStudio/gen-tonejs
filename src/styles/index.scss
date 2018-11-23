@@ -14,3 +14,11 @@ button {
   // margin: 0 4px;
   margin-right: 4px;
 }
+
+.slider {
+  margin: 64px 0;
+  .label {
+    position: absolute;
+    top: -32px;
+  }
+}

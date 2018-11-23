@@ -1,6 +1,7 @@
 import '../styles/index.scss';
 
 import * as Tone from 'tone';
+import { createButton, createSlider } from './ui';
 
 //create a synth and connect it to the master output (your speakers)
 const synth = new Tone.Synth().toMaster();
@@ -20,16 +21,12 @@ const triggerRelease = () => {
     synth.triggerRelease();
 };
 
-const createButton = (name, label, clickHandler, parent = document.body) => {
-    const button = document.createElement('button');
-    button.value = name;
-    button.label = name;
-    button.appendChild(document.createTextNode(label));
-    button.onclick = clickHandler;
-    parent.appendChild(button);
-    return button;
+const updateFreq = freq => {
+    synth.frequency.rampTo(freq, 0.1);
 };
 
 createButton('play', 'trigger attackRelease', () => triggerAttackRelease("C4", "4n"));
 createButton('play', 'trigger attack', () => triggerAttack("C4"));
 createButton('stop', 'trigger release', () => triggerRelease());
+
+createSlider(0, 10000, 'update-freq', updateFreq);
