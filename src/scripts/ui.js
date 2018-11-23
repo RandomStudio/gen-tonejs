@@ -32,9 +32,9 @@ export const createSlider = (min, max, name, onchange, initValue = 0, units = ''
         start: initValue,
         range: { min, max },
         pips: {
-            mode: 'steps',
-            stepped: true,
-            density: 4
+            mode: 'values',
+            values: [20, 440, 1000, 2000, 10000],
+            density: 2
         }
     });
     

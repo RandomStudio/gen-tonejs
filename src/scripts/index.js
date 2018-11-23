@@ -30,4 +30,4 @@ createButton('play', 'play note', () => triggerAttackRelease("C4", "4n"));
 createButton('play', 'trigger attack', () => triggerAttack());
 createButton('stop', 'trigger release', () => triggerRelease());
 
-createSlider(0, 10000, 'update-freq', updateFreq, synth.frequency.value, 'Hz');
+createSlider(0, 10000, 'synth-freq', updateFreq, synth.frequency.value, 'Hz');
