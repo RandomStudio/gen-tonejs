@@ -6,10 +6,14 @@ export const DetuneSirens = (Tone) => {
     
     const parentElement = Component('detune-sirens');
 
+    const channel = new Tone.Volume();
+    channel.toMaster();
+    
     //initially muted
-    Tone.Master.mute = true;
+    channel.mute = true;
     //use this to pan the two oscillators hard left/right
-    var merge = new Tone.Merge().toMaster();
+    var merge = new Tone.Merge();
+    merge.connect(channel);
     //two oscillators panned hard left / hard right
     var rightOsc = new Tone.Oscillator({
         "type" : "sawtooth",
@@ -44,11 +48,11 @@ export const DetuneSirens = (Tone) => {
     
 
     const start = () => {
-        Tone.Master.mute = false;
+        channel.mute = false;
     };
 
     const stop = () => {
-        Tone.Master.mute = true;
+        channel.mute = true;
     };
 
     const updateFreq = (value) => {

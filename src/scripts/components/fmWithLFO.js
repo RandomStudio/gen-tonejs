@@ -17,8 +17,8 @@ export const fmWithLFO = (Tone) => {
             type : "square"
         },
         modulationEnvelope : {
-            attack : 0.5,
-            decay : 0.01
+            attack : 1,
+            decay : 0.1
         }
     }).toMaster();
 
