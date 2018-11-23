@@ -1,9 +1,9 @@
-import { Component } from '../../ui/component';
-import { createButton, createSlider } from '../../ui/ui';
+import { Component } from '../ui/component';
+import { createButton, createSlider } from '../ui/ui';
 
-export const Simple = (Tone) => {
+export const fmWithLFO = (Tone) => {
     
-    const parentElement = Component('Simple');
+    const parentElement = Component('fmWithLfo');
 
     const synth = new Tone.Synth().toMaster();
 
