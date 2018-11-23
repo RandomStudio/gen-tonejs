@@ -16,9 +16,14 @@ button {
 }
 
 .slider {
-  margin: 64px 0;
+  margin: 64px 64px 0 0;
+  font-size: 10px;
   .label {
+    font-size: 12px;
     position: absolute;
     top: -32px;
+  }
+  .noUi-value-horizontal {
+    margin-top: 8px;
   }
 }

@@ -29,8 +29,7 @@ export const createSlider = (min, max, name, onchange, initValue = 0) => {
             density: 4
         }
     });
-    slider.noUiSlider.on('update', values => {
-        console.log('update to', values);
+    slider.noUiSlider.on('update', values => { 
         onchange(parseFloat(values));
     });
 };
