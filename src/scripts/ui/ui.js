@@ -5,7 +5,6 @@ import './ui.scss';
 export const createButton = (name, label, clickHandler, parent = document.body) => {
     const button = document.createElement('button');
     button.value = name;
-    button.label = name;
     button.appendChild(document.createTextNode(label));
     button.onclick = clickHandler;
     parent.appendChild(button);
