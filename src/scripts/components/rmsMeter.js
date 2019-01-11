@@ -1,21 +1,27 @@
 import { Component } from '../ui/component';
-import { createDynamicLabel } from '../ui/ui';
+import { createHorizontalMeter } from '../ui/ui';
 
 export const rmsMeter = (Tone) => {
 
-    let value = 0;
-
-    const parentElement = Component('rms-meter');
-    parentElement.classList.add('meter');
+    const parentElement = Component('meters');
+    parentElement.classList.add('floater');
 
     const meter = new Tone.Meter();
+    meter.smoothing = 0.1;
 
     Tone.Master.chain(meter);
 
-    createDynamicLabel('rms', 'level', () => { return meter.getLevel(); }, parentElement);
-
-    // const intervalUpdate = setInterval(() => {
-    //     console.log(meter.getLevel());
-    // }, 500);
+    createHorizontalMeter('rms-meter', () => { 
+        let value = meter.getLevel();
+        const min = -60;
+        const max = 0;
+        if (value < min) {
+            value = min;
+        }
+        if (value > max) {
+            value = max;
+        }
+        return 1 - value / min;
+    }, parentElement);
 
 };

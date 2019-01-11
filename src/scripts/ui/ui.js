@@ -110,9 +110,30 @@ export const createDynamicLabel = (name, label, updater, parent) => {
 
     const intervalUpdate = setInterval(() => {
         const value = updater.apply();
-        console.log(value);
         valueSpan.textContent = value;        
-    }, 500);
+    }, 60);
 
     return div;
+};
+
+export const createHorizontalMeter = (name, updater, parent) => {
+    const container = document.createElement('div');
+    container.classList.add('meter');
+    container.id = name;
+    const barEmpty = document.createElement('div');
+    barEmpty.classList.add('bar-empty');
+    const barFill = document.createElement('div');
+    barFill.classList.add('bar-fill');
+    barEmpty.appendChild(barFill);
+    container.appendChild(barEmpty);
+    parent.appendChild(container);
+
+    const intervalUpdate = setInterval(() => {
+        const value = updater.apply();
+        if (value !== null) {
+            barFill.style.width = value * 100 + '%';
+        }
+    }, 60);
+
+    return container;
 };
