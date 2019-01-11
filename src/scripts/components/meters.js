@@ -1,5 +1,5 @@
 import { Component } from '../ui/component';
-import { createHorizontalMeter } from '../ui/ui';
+import { createHorizontalMeter, createBandedMeter } from '../ui/ui';
 
 export const meters = (Tone) => {
 
@@ -22,6 +22,10 @@ export const meters = (Tone) => {
             value = max;
         }
         return 1 - value / min;
+    }, parentElement);
+
+    createBandedMeter('spectrum-meter', 'spectrum', 16, () => {
+        return new Array(16).fill(0).map(e => Math.random());
     }, parentElement);
 
 };

@@ -118,7 +118,7 @@ export const createDynamicLabel = (name, label, updater, parent) => {
 
 export const createHorizontalMeter = (name, label, updater, parent) => {
     const container = document.createElement('div');
-    container.classList.add('meter');
+    container.classList.add('horizontal-meter');
     container.id = name;
     const barEmpty = document.createElement('div');
     barEmpty.classList.add('bar-empty');
@@ -142,5 +142,59 @@ export const createHorizontalMeter = (name, label, updater, parent) => {
         }
     }, 60);
 
+    return container;
+};
+
+export const createBandedMeter = (name, label, channelCount, updater, parent) => {
+    const container = document.createElement('div');
+    container.classList.add('banded-meter');
+    container.id = name;
+
+    const drawingArea = document.createElement('div');
+    drawingArea.classList.add('drawing-area');
+
+    const meterLabel = document.createElement('div');
+    meterLabel.classList.add('label');
+    meterLabel.textContent = label;
+    drawingArea.appendChild(meterLabel);
+
+    const canvas = document.createElement('canvas');
+
+    const updateCanvas = canvas => {
+
+        const values = updater.apply();
+        console.log(values);
+
+        const { width, height } = canvas.getBoundingClientRect();
+        const channelWidth = width / channelCount;
+        canvas.width = width;
+        canvas.height = height;
+
+        const ctx = canvas.getContext('2d');
+        if (ctx) {
+            ctx.clearRect(0, 0, width, height);
+
+            for (var c = 0; c < channelCount; c++) {
+                const x = c * channelWidth;
+                const channelHeight = values[c] * height;
+                ctx.fillStyle = 'rgb(255,0,0)';
+                ctx.fillRect(x, height, x + channelWidth, -channelHeight);
+            }
+            // ctx.fillStyle = 'rgb(255,0,0)';
+            // ctx.fillRect(0, 0, width, height);
+            
+        }
+
+    };
+
+    drawingArea.appendChild(canvas);
+    container.appendChild(drawingArea);
+
+    const intervalUpdate = setInterval(() => {
+        updateCanvas(canvas);
+    }, 60);
+
+
+    parent.appendChild(container);
     return container;
 };
