@@ -6,7 +6,7 @@ Some tools for generative audio in the browser, using [ToneJS](https://tonejs.gi
 
 
 ## Demo
-Go to https://anselanza.github.io/gen-tonejs/
+Go to https://randomstudio.github.io/gen-tonejs/
 Try click on `trigger attack` button on the `FMWITHLFO` component.
 
 ![alt text](/screencapture.gif "demo in action")
