@@ -11,7 +11,7 @@ export const meters = (Tone) => {
 
     Tone.Master.chain(meter);
 
-    createHorizontalMeter('rms-meter', () => { 
+    createHorizontalMeter('rms-meter', 'rms', () => { 
         let value = meter.getLevel();
         const min = -60;
         const max = 0;
