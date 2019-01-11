@@ -9,7 +9,10 @@ export const meters = (Tone) => {
     const meter = new Tone.Meter();
     meter.smoothing = 0.1;
 
-    Tone.Master.chain(meter);
+    const analyser = new Tone.Analyser;
+    analyser.smoothing = 0.1;
+
+    Tone.Master.chain(meter, analyser);
 
     createHorizontalMeter('rms-meter', 'rms', () => { 
         let value = meter.getLevel();
@@ -24,8 +27,22 @@ export const meters = (Tone) => {
         return 1 - value / min;
     }, parentElement);
 
-    createBandedMeter('spectrum-meter', 'spectrum', 16, () => {
-        return new Array(16).fill(0).map(e => Math.random());
+    createBandedMeter('spectrum-meter', 'spectrum', 64, () => {
+        const values = analyser.getValue();
+        return values.map(value => {
+            const min = -200;
+            const max = 0;
+            if (value < min) {
+                value = min;
+            }
+            if (value > max) {
+                value = max;
+            }
+            return 1 - value / min;
+        });
+
+        // console.log(values);
+        // return new Array(32).fill(0).map(e => Math.random());
     }, parentElement);
 
 };

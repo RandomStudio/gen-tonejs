@@ -163,7 +163,6 @@ export const createBandedMeter = (name, label, channelCount, updater, parent) =>
     const updateCanvas = canvas => {
 
         const values = updater.apply();
-        console.log(values);
 
         const { width, height } = canvas.getBoundingClientRect();
         const channelWidth = width / channelCount;
@@ -177,7 +176,10 @@ export const createBandedMeter = (name, label, channelCount, updater, parent) =>
             for (var c = 0; c < channelCount; c++) {
                 const x = c * channelWidth;
                 const channelHeight = values[c] * height;
-                ctx.fillStyle = 'rgb(255,0,0)';
+                ctx.strokeStyle = '#eee';
+                ctx.strokeRect(x, 0, x + channelWidth, height);
+
+                ctx.fillStyle = 'lightgreen';
                 ctx.fillRect(x, height, x + channelWidth, -channelHeight);
             }
             // ctx.fillStyle = 'rgb(255,0,0)';
