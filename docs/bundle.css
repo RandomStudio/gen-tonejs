@@ -1,6 +1,7 @@
 body {
   color: grey;
-  font-family: 'Vectrex', Arial, sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
   padding: 0; }
 
 .component {
@@ -12,7 +13,7 @@ body {
     padding: 0 16px;
     margin: 16px -16px; }
   .component button {
-    font-family: 'Vectrex';
+    font-family: 'IBM Plex Mono', monospace;
     color: white;
     background-color: grey;
     border: 1px solid black;
