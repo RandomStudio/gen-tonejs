@@ -63,20 +63,20 @@ export const fmWithLFO = (Tone) => {
     
     createSlider('fmsynth-freq', { 
         min: 0, max: 10000,
-        initValue: synth.frequency.value, 
+        initValue: 44, 
         units: 'Hz', 
         labelValues: freqRangeValues
     }, updateFreq, parentElement);
 
     createSlider('lfo-volume-freq', {
         min: 0, max: 100, 
-        initValue: volumeLFO.frequency.value, 
+        initValue: 7, 
         units: 'Hz'
     }, updateVolumeLFOfrequency, parentElement);
 
     createSlider('fmsynth-mod-freq', {
         min: 0, max: 1000, 
-        initValue: synth.modulation.frequency.value, 
+        initValue: 94, 
         units: 'Hz', 
         labelValues: freqRangeValues
     }, updateModulatorFrequency, parentElement);
