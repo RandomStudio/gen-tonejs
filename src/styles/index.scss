@@ -2,6 +2,7 @@ $body-color: grey;
 
 body {
   color: $body-color;
-  font-family: 'Vectrex', Arial, sans-serif;
+  font-family: 'IBM Plex Mono', monospace;
+  text-transform: uppercase;
   padding: 0;
 }
