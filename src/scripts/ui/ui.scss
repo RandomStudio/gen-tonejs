@@ -1,34 +1,4 @@
-button {
-    font-family: 'Vectrex';
-    color: white;
-    background-color: grey;
-    border: 1px solid black;
-    margin-right: 4px;
-  }
-  
-  .slider {
-    margin: 64px 64px 100px 16px;
-    font-size: 10px;
-    .label {
-      font-size: 12px;
-      position: absolute;
-      top: -32px;
-      width: 100%;
-      .value {
-        position: absolute;
-        right: 0;
-        color: black;
-      }
-    }
-    .noUi-value {
-      font-size: 6px;
-    }
-    .noUi-value-horizontal {
-      margin-top: 12px;
-    }
-  }
-
-  .component {
+.component {
     margin-bottom: 128px;
 
     h2 {
@@ -38,5 +8,50 @@ button {
       padding: 0 16px;
       margin: 16px -16px;
     }
+
+    button {
+      font-family: 'Vectrex';
+      color: white;
+      background-color: grey;
+      border: 1px solid black;
+      margin-right: 4px;
+    }
+    
+    .slider {
+      margin: 64px 64px 100px 16px;
+      font-size: 10px;
+
+      .label {
+        font-size: 12px;
+        position: absolute;
+        top: -32px;
+        width: 100%;
+        .value {
+          position: absolute;
+          right: 0;
+          color: black;
+        }
+      }
+      .noUi-value {
+        font-size: 6px;
+      }
+      .noUi-value-horizontal {
+        margin-top: 12px;
+      }
   }
+
+}
+
+.component.meter {
+  position: fixed;
+  right: 0;
+  top: 0;
+  border: 1px solid black;
+
+  h2 {
+    margin: 0;
+    padding: 0;
+  }
+}
+
   

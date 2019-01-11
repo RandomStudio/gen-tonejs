@@ -1,6 +1,5 @@
 import { Component } from '../ui/component';
 import { createButton, createSlider, createRangeSlider } from '../ui/ui';
-import { freqRangeValues } from '../utils/utils';
 
 export const NoiseSynthEnvelopes = (Tone) => {
     
@@ -43,4 +42,4 @@ export const NoiseSynthEnvelopes = (Tone) => {
     };
 
      createButton('play', 'play note', () => triggerAttackRelease("2n"), parentElement);
-}
+};

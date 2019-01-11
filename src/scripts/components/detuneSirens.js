@@ -1,6 +1,5 @@
 import { Component } from '../ui/component';
 import { createButton, createSlider } from '../ui/ui';
-import { freqRangeValues } from '../utils/utils';
 
 export const DetuneSirens = (Tone) => {
     

@@ -98,3 +98,21 @@ export const createSlider = (name, options, onchange, parent = document.body) =>
         showValue.innerHTML = `${number} ${units}`;
     });
 };
+
+export const createDynamicLabel = (name, label, updater, parent) => {
+
+    const div = document.createElement('div');
+    div.appendChild(document.createTextNode(label + ': '));
+    const valueSpan = document.createElement('span');
+    div.appendChild(valueSpan);
+    div.id = name;
+    parent.appendChild(div);
+
+    const intervalUpdate = setInterval(() => {
+        const value = updater.apply();
+        console.log(value);
+        valueSpan.textContent = value;        
+    }, 500);
+
+    return div;
+};
