@@ -7,7 +7,7 @@ import { DetuneSirens } from './components/detuneSirens';
 import { Noise } from './components/noise';
 import { NoiseSynth } from './components/noiseSynth';
 import { NoiseSynthEnvelopes } from './components/noiseSynthEnvelopes';
-import { rmsMeter } from './components/rmsMeter';
+import { meters } from './components/meters';
 
 Simple(Tone);
 fmWithLFO(Tone);
@@ -16,4 +16,4 @@ Noise(Tone);
 NoiseSynth(Tone);
 NoiseSynthEnvelopes(Tone);
 
-rmsMeter(Tone);
+meters(Tone);

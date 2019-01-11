@@ -1,7 +1,7 @@
 import { Component } from '../ui/component';
 import { createHorizontalMeter } from '../ui/ui';
 
-export const rmsMeter = (Tone) => {
+export const meters = (Tone) => {
 
     const parentElement = Component('meters');
     parentElement.classList.add('floater');
