@@ -11,14 +11,19 @@ export const fmWithLFO = (Tone) => {
         harmonicity: 1,
         envelope : {
             attack : 0.01,
-            decay : 0.2
+            decay : 0.2,
+            sustain: 1,
+            release: 5,
+            releaseCurve: "ripple"
         },
         modulation : {
             type : "square"
         },
         modulationEnvelope : {
-            attack : 1,
-            decay : 0.1
+            attack : 5,
+            decay : 2,
+            release: 6,
+            releaseCurve: "ripple"
         }
     }).toMaster();
 

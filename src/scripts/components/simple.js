@@ -34,7 +34,7 @@ export const Simple = (Tone) => {
     
     createSlider('simple-synth-freq', {
         min: 0, max: 10000,
-        initValue: synth.frequency.value, 
+        initValue: 91, 
         units: 'Hz', 
         labelValues: freqRangeValues
      }, updateFreq, parentElement);
