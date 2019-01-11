@@ -27,6 +27,7 @@ export const NoiseSynth = (Tone) => {
     channel.toMaster();
 
     const triggerAttackRelease = (length) => {
+        console.log('play', length);
         synth.triggerAttackRelease(length);
     };
 
