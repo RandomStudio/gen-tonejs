@@ -223,3 +223,32 @@ export const createToggle = (name, label, onUpdate, parent, initState = false) =
     parent.appendChild(container);
     return container;
 };
+
+export const createBufferImage = (name, label, audioBuffer, parent) => {
+    const container = document.createElement('div');
+    container.id = name;
+
+    const canvas = document.createElement('canvas');
+    const ctx = canvas.getContext('2d');
+
+    ctx.beginPath();
+    const values = audioBuffer.getChannelData(0);
+    const width = 512;
+    const height = 128;
+    canvas.width = width;
+    canvas.height = height;
+    const stepSize = Math.floor(values.length / width);
+    
+    ctx.fillStyle = 'lightgreen';
+    for (var x = 0; x < width; x++) {
+        const value = values[x * stepSize];
+        console.log(x, value);
+        const size = Math.abs(value) * height;
+        ctx.fillRect(x, height/2 - size/2, 1, size);
+    }
+   
+    container.appendChild(canvas);
+
+    parent.appendChild(container);
+    return container;
+};

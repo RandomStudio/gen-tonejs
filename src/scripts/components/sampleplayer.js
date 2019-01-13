@@ -1,13 +1,16 @@
 import { Component } from '../ui/component';
-import { createButton, createToggle } from '../ui/ui';
-import { freqRangeValues } from '../utils/utils';
+import { createButton, createToggle, createBufferImage } from '../ui/ui';
 
 export const SamplePlayer = (Tone) => {
     
     const parentElement = Component('SamplePlayer');
 
     const player = new Tone.Player(
-        '/public/samples/aah.m4a'       
+        '/public/samples/aah.m4a', 
+        () => {
+            console.log('loaded');
+            createBufferImage('aah-sample-draw', 'aah', player.buffer, parentElement);
+        }    
     ).toMaster();
     
     createButton('play', 'play', () => player.start(), parentElement);
@@ -20,5 +23,4 @@ export const SamplePlayer = (Tone) => {
         player.loop = state; 
     }, parentElement);
 
-    
 };
