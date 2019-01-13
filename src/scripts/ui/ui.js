@@ -200,3 +200,26 @@ export const createBandedMeter = (name, label, channelCount, updater, parent) =>
     parent.appendChild(container);
     return container;
 };
+
+export const createToggle = (name, label, onUpdate, parent, initState = false) => {
+    const container = document.createElement('div');
+    container.classList.add('toggle');
+    container.id = name;
+
+    container.appendChild(document.createTextNode(label + '? '));
+    
+    const checkbox = document.createElement('input');
+    checkbox.setAttribute('type', 'checkbox');
+    checkbox.checked = initState;
+    const handler = (e) => {
+        const state = e.target.checked;
+        console.log('toggle state:', state);
+        onUpdate(state);
+    };
+    checkbox.addEventListener('change', handler);
+
+    container.appendChild(checkbox);
+
+    parent.appendChild(container);
+    return container;
+};
